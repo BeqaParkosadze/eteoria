@@ -14,7 +14,8 @@ import {
   Sun,
   Moon,
   Menu,
-  X
+  X,
+  Crosshair
 } from 'lucide-react';
 import { CATEGORIES, LANGUAGES } from '../utils/constants';
 import { getT } from '../utils/i18n';
@@ -40,7 +41,8 @@ export default function Navbar({
   mistakesCount = 0,
   onOpenSearch,
   theme = 'light',
-  onToggleTheme
+  onToggleTheme,
+  onNavigateToWeaponExam
 }) {
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const [catMenuOpen, setCatMenuOpen] = useState(false);
@@ -232,6 +234,31 @@ export default function Navbar({
                         </button>
                       );
                     })}
+
+                    {/* Weapon License Exam Section Link */}
+                    <div className="pt-1.5 mt-1 border-t border-slate-200 dark:border-slate-700">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setCatMenuOpen(false);
+                          if (onNavigateToWeaponExam) onNavigateToWeaponExam();
+                        }}
+                        className="w-full flex items-center gap-3 px-3 py-2 rounded-2xl text-left text-xs transition-all duration-150 min-h-[44px] cursor-pointer bg-amber-50 dark:bg-amber-950/40 text-amber-950 dark:text-amber-200 hover:bg-amber-100 dark:hover:bg-amber-950/70 border border-amber-200 dark:border-amber-800"
+                      >
+                        <div className="w-7 h-7 rounded-xl flex items-center justify-center shrink-0 border bg-amber-200 dark:bg-amber-900 text-amber-900 dark:text-amber-100 border-amber-300 dark:border-amber-700">
+                          <Crosshair className="w-4 h-4" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-1.5 font-black text-amber-900 dark:text-amber-100">
+                            <span>იარაღის გამოცდა</span>
+                            <span className="text-[9px] font-black px-1.5 py-0.2 rounded-full bg-amber-500 text-white">2026</span>
+                          </div>
+                          <div className="text-[10px] text-amber-700 dark:text-amber-300 truncate font-bold">
+                            შეძენა, შენახვა, ტარება
+                          </div>
+                        </div>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </>

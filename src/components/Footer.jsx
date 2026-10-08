@@ -1,7 +1,7 @@
 import React from 'react';
-import { Shield, BookOpen, Bug, Mail } from 'lucide-react';
+import { Shield, BookOpen, Bug, Mail, Crosshair } from 'lucide-react';
 
-export default function Footer({ onOpenPrivacy, onOpenRules, onOpenFeedback, onNavigateToArticles }) {
+export default function Footer({ onOpenPrivacy, onOpenRules, onOpenFeedback, onNavigateToArticles, onNavigateToWeaponExam }) {
   return (
     <footer className="mt-8 pt-6 border-t-2 border-slate-200 dark:border-slate-800 flex flex-col gap-4 text-xs font-bold text-slate-500 dark:text-slate-400">
       
@@ -23,6 +23,16 @@ export default function Footer({ onOpenPrivacy, onOpenRules, onOpenFeedback, onN
           >
             <BookOpen className="w-3.5 h-3.5 text-indigo-500" />
             <span>სტატიები და გზამკვლევები</span>
+          </button>
+
+          <span className="text-slate-300 dark:text-slate-700">•</span>
+
+          <button
+            onClick={onNavigateToWeaponExam}
+            className="flex items-center gap-1.5 text-amber-700 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-300 hover:underline transition-colors cursor-pointer"
+          >
+            <Crosshair className="w-3.5 h-3.5" />
+            <span>იარაღის გამოცდა</span>
           </button>
 
           <span className="text-slate-300 dark:text-slate-700">•</span>

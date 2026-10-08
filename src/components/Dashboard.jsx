@@ -19,7 +19,9 @@ import {
   Shield,
   Sparkles,
   ChevronRight,
-  HelpCircle
+  HelpCircle,
+  Crosshair,
+  Layers
 } from 'lucide-react';
 import { CATEGORIES } from '../utils/constants';
 import { getT } from '../utils/i18n';
@@ -42,7 +44,8 @@ export default function Dashboard({
   onClearHistory,
   onClearMistakes,
   onOpenSearch,
-  onNavigateToArticles
+  onNavigateToArticles,
+  onNavigateToWeaponExam
 }) {
   const t = getT(currentLanguage);
   const stats = calculateStats(examHistory);
@@ -204,15 +207,14 @@ export default function Dashboard({
             </div>
 
             <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight font-['Plus_Jakarta_Sans',sans-serif] text-slate-900 dark:text-white">
-              <span>{t.heroTitleMain || 'მართვის მოწმობის'}</span> <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-indigo-700 to-violet-700 dark:from-indigo-400 dark:to-violet-400">
-                {t.heroTitleSub || 'თეორიული გამოცდა'}
-              </span>
-              <span className="sr-only"> • საგამოცდო ბილეთები 2026</span>
+              მართვის მოწმობის თეორიის ბილეთები (2026)
             </h1>
 
             <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-xl leading-relaxed font-bold">
-              {t.heroDesc || '30-კითხვიანი რეალური საგამოცდო სიმულაცია, ბილეთების სრული კატალოგი და მომენტალური შემოწმება საქართველოს შსს მომსახურების სააგენტოს სტანდარტით.'}
+              მოემზადე მართვის მოწმობის თეორიული გამოცდისთვის უახლესი 2026 წლის ოფიციალური საგამოცდო ბილეთებით. 
+              პლატფორმა მოიცავს საქართველოს შსს მომსახურების სააგენტოს B კატეგორიის სრულ საგამოცდო ბაზას, 
+              საგზაო ნიშნებს, თემატურ ტესტებს, უსაფრთხო მართვის პრაქტიკას და 30-კითხვიანი გამოცდის ონლაინ სიმულატორს 
+              მომენტალური განმარტებებით.
             </p>
 
             {/* Quick Category Selector Badges */}
@@ -346,7 +348,152 @@ export default function Dashboard({
       </div>
 
       {/* ========================================================
-          3. EXAM SIMULATOR HISTORY TABLE
+          3. CATEGORY CARDS & EXAMINATION SUB-SECTIONS GRID (SEO Core)
+         ======================================================== */}
+      <section aria-labelledby="categories-grid-heading" className="space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h2 id="categories-grid-heading" className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 dark:text-white font-['Plus_Jakarta_Sans',sans-serif] flex items-center gap-2">
+              <Layers className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+              <span>საგამოცდო მიმართულებები და კატეგორიები (2026)</span>
+            </h2>
+            <p className="text-xs text-slate-500 dark:text-slate-400 font-bold mt-0.5">
+              აირჩიეთ სასურველი კატეგორია, საგზაო წესები ან გამოცდის რეჟიმი მოსამზადებლად
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3.5 sm:gap-4">
+          
+          {/* Card 1: B კატეგორიის ბილეთები */}
+          <div 
+            onClick={() => {
+              onSelectCategory('B_B1');
+              onNavigateToStudy();
+            }}
+            className="group bg-white dark:bg-[#161b22] border-2 border-slate-900 dark:border-slate-700 rounded-3xl p-4 sm:p-5 shadow-[4px_4px_0px_#0f172a] dark:shadow-[4px_4px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#0f172a] dark:hover:shadow-[6px_6px_0px_#000] transition-all cursor-pointer flex flex-col justify-between min-h-[175px]"
+          >
+            <div>
+              <div className="w-10 h-10 rounded-2xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 border-2 border-slate-900 dark:border-slate-700 flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                <Car className="w-5 h-5" />
+              </div>
+              <h3 className="font-black text-slate-900 dark:text-white text-sm sm:text-base group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                B კატეგორიის ბილეთები
+              </h3>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-bold mt-1 leading-relaxed">
+                მსუბუქი ავტომობილის (B, B1) ოფიციალური საგამოცდო ბილეთები განმარტებებით.
+              </p>
+            </div>
+            <div className="pt-3 flex items-center justify-between text-xs font-black text-indigo-600 dark:text-indigo-400 border-t border-slate-100 dark:border-slate-800">
+              <span>ბილეთების ნახვა</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+
+          {/* Card 2: საგზაო ნიშნები და წესები */}
+          <div 
+            onClick={() => {
+              if (onNavigateToArticles) {
+                onNavigateToArticles('sagzao-nishnebi-klasifikacia-2026');
+              } else {
+                onNavigateToStudy();
+              }
+            }}
+            className="group bg-white dark:bg-[#161b22] border-2 border-slate-900 dark:border-slate-700 rounded-3xl p-4 sm:p-5 shadow-[4px_4px_0px_#0f172a] dark:shadow-[4px_4px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#0f172a] dark:hover:shadow-[6px_6px_0px_#000] transition-all cursor-pointer flex flex-col justify-between min-h-[175px]"
+          >
+            <div>
+              <div className="w-10 h-10 rounded-2xl bg-emerald-50 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 border-2 border-slate-900 dark:border-slate-700 flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                <Shield className="w-5 h-5" />
+              </div>
+              <h3 className="font-black text-slate-900 dark:text-white text-sm sm:text-base group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                საგზაო ნიშნები და წესები
+              </h3>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-bold mt-1 leading-relaxed">
+                მაფრთხილებელი, პრიორიტეტის და ამკრძალავი ნიშნები 2026 წლის ცვლილებებით.
+              </p>
+            </div>
+            <div className="pt-3 flex items-center justify-between text-xs font-black text-emerald-600 dark:text-emerald-400 border-t border-slate-100 dark:border-slate-800">
+              <span>ნიშნების გაცნობა</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+
+          {/* Card 3: თემატური ტესტები */}
+          <div 
+            onClick={onNavigateToStudy}
+            className="group bg-white dark:bg-[#161b22] border-2 border-slate-900 dark:border-slate-700 rounded-3xl p-4 sm:p-5 shadow-[4px_4px_0px_#0f172a] dark:shadow-[4px_4px_0px_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#0f172a] dark:hover:shadow-[6px_6px_0px_#000] transition-all cursor-pointer flex flex-col justify-between min-h-[175px]"
+          >
+            <div>
+              <div className="w-10 h-10 rounded-2xl bg-amber-50 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 border-2 border-slate-900 dark:border-slate-700 flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                <BookOpen className="w-5 h-5" />
+              </div>
+              <h3 className="font-black text-slate-900 dark:text-white text-sm sm:text-base group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                თემატური ტესტები
+              </h3>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-bold mt-1 leading-relaxed">
+                გზაჯვარედინები, გასწრება, სიჩქარე, მანევრირება და რთული სიტუაციები.
+              </p>
+            </div>
+            <div className="pt-3 flex items-center justify-between text-xs font-black text-amber-600 dark:text-amber-400 border-t border-slate-100 dark:border-slate-800">
+              <span>თემებით სწავლა</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+
+          {/* Card 4: გამოცდის სიმულაცია (30 კითხვა) */}
+          <div 
+            onClick={() => onStartExam('exam')}
+            className="group bg-indigo-50/60 dark:bg-indigo-950/40 border-2 border-indigo-600 dark:border-indigo-500 rounded-3xl p-4 sm:p-5 shadow-[4px_4px_0px_#4f46e5] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#4f46e5] transition-all cursor-pointer flex flex-col justify-between min-h-[175px]"
+          >
+            <div>
+              <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white border-2 border-slate-900 flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                <Play className="w-5 h-5 fill-current ml-0.5" />
+              </div>
+              <h3 className="font-black text-slate-900 dark:text-white text-sm sm:text-base group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                გამოცდის სიმულაცია (30 კითხვა)
+              </h3>
+              <p className="text-[11px] text-slate-600 dark:text-slate-300 font-bold mt-1 leading-relaxed">
+                30 წუთი, მაქს. 3 შეცდომა — სააგენტოს რეალური გამოცდის იდენტური გარემო.
+              </p>
+            </div>
+            <div className="pt-3 flex items-center justify-between text-xs font-black text-indigo-700 dark:text-indigo-300 border-t border-indigo-200 dark:border-indigo-900">
+              <span>სიმულაციის დაწყება</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+
+          {/* Card 5: [NEW] იარაღის გამოცდის ბილეთები */}
+          <div 
+            onClick={onNavigateToWeaponExam}
+            className="group bg-white dark:bg-[#161b22] border-2 border-amber-600 dark:border-amber-500 rounded-3xl p-4 sm:p-5 shadow-[4px_4px_0px_#d97706] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#d97706] transition-all cursor-pointer flex flex-col justify-between min-h-[175px] relative overflow-hidden"
+          >
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-10 h-10 rounded-2xl bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 border-2 border-slate-900 dark:border-slate-700 flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <Crosshair className="w-5 h-5" />
+                </div>
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-black bg-amber-500 text-white border border-slate-900 shadow-sm animate-pulse">
+                  მალე / მზადებაშია
+                </span>
+              </div>
+              <h3 className="font-black text-slate-900 dark:text-white text-sm sm:text-base group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                იარაღის გამოცდის ბილეთები
+              </h3>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-bold mt-1 leading-relaxed">
+                თავდაცვის, სანადირო და სპორტული იარაღის შეძენა/შენახვის ნებართვის ტესტები.
+              </p>
+            </div>
+            <div className="pt-3 flex items-center justify-between text-xs font-black text-amber-600 dark:text-amber-400 border-t border-slate-100 dark:border-slate-800">
+              <span>გაეცანი პროგრამას</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ========================================================
+          4. EXAM SIMULATOR HISTORY TABLE
          ======================================================== */}
       <div className="w-full bg-white dark:bg-[#161b22] border-2 border-slate-900 dark:border-slate-700 rounded-4xl p-6 sm:p-8 shadow-[5px_5px_0px_0px_rgba(15,23,42,1)] dark:shadow-[5px_5px_0px_0px_#000]">
         

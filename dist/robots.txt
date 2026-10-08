@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://eteoria.online/sitemap.xml
+Sitemap: https://www.eteoria.online/sitemap.xml

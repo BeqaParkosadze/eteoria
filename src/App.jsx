@@ -10,6 +10,7 @@ import SearchModal from './components/SearchModal';
 import ExamWizardModal from './components/ExamWizardModal';
 import MistakesView from './components/MistakesView';
 import ArticlesView from './components/ArticlesView';
+import WeaponExamView from './components/WeaponExamView';
 import ErrorBoundary from './components/ErrorBoundary';
 import Footer from './components/Footer';
 import PrivacyModal from './components/PrivacyModal';
@@ -98,7 +99,7 @@ export default function App() {
     setMistakesBank(getMistakesBank());
   }, []);
 
-  // Synchronize route with browser URL for SEO articles
+  // Synchronize route with browser URL for SEO articles and weapon license exam
   useEffect(() => {
     const handleLocationChange = () => {
       const path = window.location.pathname;
@@ -106,11 +107,12 @@ export default function App() {
         const parts = path.split('/').filter(Boolean);
         setActiveView('articles');
         setActiveArticleSlug(parts.length > 1 ? parts[1] : null);
+      } else if (path === '/iaragis-biletebi' || path === '/weapon-license') {
+        setActiveView('weapon');
+        setActiveArticleSlug(null);
       } else if (path === '/' || path === '') {
-        if (activeView === 'articles') {
-          setActiveView('dashboard');
-          setActiveArticleSlug(null);
-        }
+        setActiveView(prev => (prev === 'articles' || prev === 'weapon' ? 'dashboard' : prev));
+        setActiveArticleSlug(null);
       }
     };
 
@@ -125,6 +127,15 @@ export default function App() {
     const targetUrl = slug ? `/statiiebi/${slug}` : '/statiiebi';
     if (window.location.pathname !== targetUrl) {
       window.history.pushState(null, '', targetUrl);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleNavigateToWeaponExam = () => {
+    setActiveView('weapon');
+    setActiveArticleSlug(null);
+    if (window.location.pathname !== '/iaragis-biletebi') {
+      window.history.pushState(null, '', '/iaragis-biletebi');
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -321,6 +332,7 @@ export default function App() {
           onOpenSearch={() => setIsSearchOpen(true)}
           theme={theme}
           onToggleTheme={handleToggleTheme}
+          onNavigateToWeaponExam={handleNavigateToWeaponExam}
         />
       )}
 
@@ -373,6 +385,20 @@ export default function App() {
                 onClearMistakes={handleClearMistakes}
                 onOpenSearch={() => setIsSearchOpen(true)}
                 onNavigateToArticles={() => handleNavigateToArticles(null)}
+                onNavigateToWeaponExam={handleNavigateToWeaponExam}
+              />
+            )}
+
+            {activeView === 'weapon' && (
+              <WeaponExamView
+                onBackToDashboard={() => {
+                  setActiveView('dashboard');
+                  if (window.location.pathname !== '/') {
+                    window.history.pushState(null, '', '/');
+                  }
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                onNavigateToArticle={(slug) => handleNavigateToArticles(slug)}
               />
             )}
 
@@ -471,6 +497,7 @@ export default function App() {
               onOpenRules={() => setIsRulesOpen(true)}
               onOpenFeedback={() => setIsFeedbackOpen(true)}
               onNavigateToArticles={() => handleNavigateToArticles(null)}
+              onNavigateToWeaponExam={handleNavigateToWeaponExam}
             />
           )}
 
