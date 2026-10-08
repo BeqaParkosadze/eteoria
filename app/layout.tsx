@@ -3,11 +3,11 @@ import type { ReactNode } from 'react';
 export const metadata = {
   metadataBase: new URL('https://eteoria.online'),
   title: {
-    default: 'eTeoria • მართვისა და იარაღის თეორიული გამოცდა | ბილეთები 2026',
+    default: 'მართვის მოწმობის თეორიის ბილეთები 2026 | eTeoria',
     template: '%s | eTeoria',
   },
   description:
-    'ოფიციალური საგამოცდო ბილეთები B, A, C, D კატეგორიებისა და იარაღის შეძენის/შენახვის ნებართვის თეორიული გამოცდისთვის. რეალური სიმულატორი, შეცდომების ბანკი და დეტალური სტატისტიკა.',
+    'ჩააბარე მართვის მოწმობის თეორიული გამოცდა მარტივად. 2026 წლის განახლებული ბილეთები, თემატური ტესტები და განმარტებები უფასოდ.',
   keywords: [
     'მართვის მოწმობის ბილეთები',
     'B კატეგორია',
@@ -26,7 +26,7 @@ export const metadata = {
     'საგზაო ნიშნები',
   ],
   alternates: {
-    canonical: 'https://eteoria.online',
+    canonical: 'https://eteoria.online/',
   },
   robots: {
     index: true,
@@ -42,25 +42,25 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'ka_GE',
-    url: 'https://eteoria.online',
+    url: 'https://eteoria.online/',
     siteName: 'eTeoria',
-    title: 'eTeoria • მართვისა და იარაღის თეორიული გამოცდა | ბილეთები 2026',
+    title: 'მართვის მოწმობის თეორიის ბილეთები 2026 | eTeoria',
     description:
-      'ოფიციალური საგამოცდო ბილეთები B, A, C, D კატეგორიებისა და იარაღის შეძენის/შენახვის ნებართვის თეორიული გამოცდისთვის.',
+      'ჩააბარე მართვის მოწმობის თეორიული გამოცდა მარტივად. 2026 წლის განახლებული ბილეთები და განმარტებები.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'eTeoria - მართვისა და იარაღის თეორიული გამოცდა',
+        alt: 'eTeoria - მართვის მოწმობის თეორიის ბილეთები 2026',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'eTeoria • მართვისა და იარაღის თეორიული გამოცდა | ბილეთები 2026',
+    title: 'მართვის მოწმობის თეორიის ბილეთები 2026 | eTeoria',
     description:
-      'ოფიციალური საგამოცდო ბილეთები B, A, C, D კატეგორიებისა და იარაღის შეძენის/შენახვის ნებართვის თეორიული გამოცდისთვის.',
+      'ჩააბარე მართვის მოწმობის თეორიული გამოცდა მარტივად. 2026 წლის განახლებული ბილეთები.',
     images: ['/og-image.png'],
   },
 };
